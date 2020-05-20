@@ -6,6 +6,6 @@
 # Alunos
 
 Kennedy Mota - 
-Robson Galinna -
+Robson Gallina -
 Lucas Molessani - 
 Denilson Medrano
