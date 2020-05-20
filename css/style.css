@@ -1,0 +1,21 @@
+@import url(https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@700&display=swap);
+
+
+body{
+}
+
+h1{
+  font-family: 'Balsamiq Sans';
+  text-align: center;
+}
+
+#container{
+  margin-top: 50px;
+  margin-left: 400px;
+  border-radius: 5px;
+  box-shadow: 10px 10px 20px black;
+  width: 250px;
+  height: 250px;
+  max-width: 300px;
+  max-height: 300px;
+}
