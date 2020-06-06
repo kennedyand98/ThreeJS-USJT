@@ -33,17 +33,24 @@ var render = () => {
 };
 
 var animate = () => {
-  sphere.rotation.x += 0.01;
+  // sphere.rotation.x -= 0.01;
   sphere.rotation.y += 0.01;
 };
 
 var createAEsphere = () => {
-  var geometry = new THREE.SphereGeometry(5, 32, 32);
-  // var material = new THREE.ImageUtils.loadTexture("usjt_logo.png");
-  var material = new THREE.MeshBasicMaterial({ color: "blue" });
+  let geometry = new THREE.SphereGeometry(12, 32, 32);
+  let material = this.createMaterial();
   sphere = new THREE.Mesh(geometry, material);
   sphere.name - "mySphere";
   scene.add(sphere);
+};
+
+var createMaterial = () => {
+  let sphereTexture = new THREE.TextureLoader().load(
+    "assets/images/textura-terra.jpg"
+  );
+  let sphereMaterial = new THREE.MeshBasicMaterial({ map: sphereTexture });
+  return sphereMaterial;
 };
 
 window.onload = this.init;
