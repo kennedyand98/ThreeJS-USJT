@@ -1,42 +1,49 @@
-var scene, camera, renderer;
-var geometry, material, mesh;
+var scene;
+var camera;
+var renderer;
+var sphere;
 
-function Executar() {
-  
-    scene = new THREE.Scene();
+var init = () => {
+  scene = new THREE.Scene();
+  camera = new THREE.PerspectiveCamera(
+    45,
+    window.innerWidth / window.innerHeight,
+    1,
+    1000
+  );
 
-    camera = new THREE.PerspectiveCamera(45, 1, 1, 10000);
-    camera.position.z = 500;
+  renderer = new THREE.WebGLRenderer();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.body.appendChild(renderer.domElement);
 
-    geometry = new THREE.BoxGeometry(200, 200, 200);
-    material = new THREE.MeshBasicMaterial({  color: 0xD1A963, wireframe: true });
+  this.createAEsphere();
 
-    mesh = new THREE.Mesh(geometry, material);
-    scene.add(mesh);
+  camera.position.x = 25;
+  camera.position.y = 10;
+  camera.position.z = 40;
+  camera.lookAt(scene.position);
 
-    renderer = new THREE.WebGLRenderer({antialias:true});
-    renderer.setClearColor(0x1F5A94);
-    renderer.setSize(500, 500);
+  this.render();
+};
 
-    var show = document.getElementById('container');
-    
-    show.appendChild(renderer.domElement);
- 
+var render = () => {
+  requestAnimationFrame(render);
+  this.animate();
+  renderer.render(scene, camera);
+};
 
-    function animate() {
+var animate = () => {
+  sphere.rotation.x += 0.01;
+  sphere.rotation.y += 0.01;
+};
 
-        requestAnimationFrame(animate);
+var createAEsphere = () => {
+  var geometry = new THREE.SphereGeometry(5, 32, 32);
+  // var material = new THREE.ImageUtils.loadTexture("usjt_logo.png");
+  var material = new THREE.MeshBasicMaterial({ color: "blue" });
+  sphere = new THREE.Mesh(geometry, material);
+  sphere.name - "mySphere";
+  scene.add(sphere);
+};
 
-        mesh.rotation.x += 0.01;
-        mesh.rotation.y += 0.02;
-        mesh.rotation.z += 0.01;
-
-        renderer.render(scene, camera);
-
-    }
-
-    animate();
-}
-
-window.onload = Executar;
-
+window.onload = this.init;
