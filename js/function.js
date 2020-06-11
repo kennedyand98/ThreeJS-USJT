@@ -16,7 +16,9 @@ var init = () => {
 
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
-  document.body.appendChild(renderer.domElement);
+  
+  document.getElementById('container').appendChild(renderer.domElement);
+  //document.body.appendChild(renderer.domElement);
 
   controls = new THREE.OrbitControls(camera, renderer.domElement);
   var gridXZ = new THREE.GridHelper(100, 10);
@@ -63,15 +65,18 @@ var createAEsphere = () => {
 };
 
 var createMaterial = () => {
-  let sphereTexture = new THREE.TextureLoader().load(
-    "assets/images/textura-terra.jpg"
-  );
+  var loader = new THREE.TextureLoader();
+
+  loader.crossOrigin = '';
+
+  let sphereTexture = loader.load('https://raw.githubusercontent.com/kennedyand98/ThreeJS-USJT/master/assets/images/textura-terra.jpg')
+
   let sphereMaterial = new THREE.MeshBasicMaterial({ map: sphereTexture });
   return sphereMaterial;
 };
 var createMaterialUsjt = () => {
   let sphereTexture = new THREE.TextureLoader().load(
-    "assets/images/usjt_logo.png"
+    "https://raw.githubusercontent.com/kennedyand98/ThreeJS-USJT/master/assets/images/usjt_logo.png"
   );
   let sphereMaterialUsjt = new THREE.MeshBasicMaterial({ map: sphereTexture });
   return sphereMaterialUsjt;
